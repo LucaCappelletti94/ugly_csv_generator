@@ -4,10 +4,10 @@ from random import Random
 from tqdm.auto import tqdm
 
 
-def add_empty_columns(csv: pd.DataFrame, state: Random) -> pd.DataFrame:
+def add_empty_columns(csv: pd.DataFrame, state: Random, verbose: bool) -> pd.DataFrame:
     """Add random empty columns"""
     columns_number = state.randint(0, len(csv.columns))
-    for number in tqdm(range(columns_number), desc="Adding empty columns"):
+    for number in tqdm(range(columns_number), desc="Adding empty columns", disable=not verbose):
         loc = state.randint(0, len(csv.columns))
         csv.insert(
             loc=loc,

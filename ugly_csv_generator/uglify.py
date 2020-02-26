@@ -15,6 +15,7 @@ def uglify(
     # nan_like_artefacts: bool = True,
     # random_separator: bool = True,
     # random_spaces: bool = True,
+    verbose: bool = True,
     seed: int = 42
 ):
     """Return or saves to given path an uglified version of the given DataFrame.
@@ -45,6 +46,8 @@ def uglify(
         Whetever to add excel-like artefacts.
     nan_like_artefacts:bool=True,
         Whetever to add nan-like artefacts.
+    verbose: bool = True,
+        Whetever to show the loading bars.
     seed:int=42
         The random seed to use to make reproducible the random aspects.
 
@@ -53,20 +56,17 @@ def uglify(
     The uglified dataframe.
     """
     state = Random(seed)
-
-    if duplicate_schema:
-        csv = add_duplicate_schema(csv, state)
-
-    if empty_columns:
-        csv = add_empty_columns(csv.copy(), state)
-
-    if empty_rows:
-        csv = add_empty_rows(csv, state)
     
     if duplicate_schema:
-        csv = add_duplicate_schema(csv, state)
+        csv = add_duplicate_schema(csv, state, verbose=verbose)
+
+    if empty_columns:
+        csv = add_empty_columns(csv.copy(), state, verbose=verbose)
+
+    if empty_rows:
+        csv = add_empty_rows(csv, state, verbose=verbose)
 
     if empty_padding:
         csv = add_empty_padding(csv, state)
-    
+
     return csv

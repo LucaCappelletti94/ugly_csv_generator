@@ -33,7 +33,8 @@ test_deps =[
     "pytest-cov",
     "coveralls",
     "validate_version_code",
-    "codacy-coverage"
+    "codacy-coverage",
+    "random_csv_generator"
 ]
 
 extras = {
@@ -60,7 +61,8 @@ setup(
     tests_require=test_deps,
     # Add here the package dependencies
     install_requires=[
-        "random_csv_generator",
+        "pandas",
+        "numpy",
         "tqdm"
     ],
     extras_require=extras,
