@@ -6,7 +6,7 @@ from .add_chunk import add_chunk
 
 def random_satellite(state: Random):
     satellites = glob("{}/satellites/*.csv".format(os.path.dirname(os.path.abspath(__file__))))
-    return pd.read_csv(state.choice(satellites))
+    return pd.read_csv(state.choice(satellites), header=None)
 
 
 def add_satellites(csv: pd.DataFrame, state: Random) -> pd.DataFrame:
