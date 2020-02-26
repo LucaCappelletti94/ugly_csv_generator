@@ -2,7 +2,8 @@ import pandas as pd
 from random import Random
 from .utils import (
     add_empty_columns, add_empty_rows, add_duplicate_schema,
-    add_empty_padding, add_nan_like_artefacts, add_random_spaces
+    add_empty_padding, add_nan_like_artefacts, add_random_spaces,
+    add_satellites
 )
 
 
@@ -15,6 +16,7 @@ def uglify(
     empty_padding: bool = True,
     nan_like_artefacts: bool = True,
     # random_separator: bool = True,
+    satellite_artefacts: bool = True,
     random_spaces: bool = True,
     verbose: bool = True,
     seed: int = 42
@@ -37,6 +39,11 @@ def uglify(
         Whetever to introduce padding around the data.
     random_separator:bool=True,
         Whetever to use a random separator when saving the file.
+    satellite_artefacts:bool=True,
+        Whetever to add satellite text around the central table.
+        This is useful to simulate when you can expect for
+        random scribbling around your CSV data.
+        The satellites may be added on the top or bottom.
     random_spaces:bool=True,
         Whetever to add random spaces to the file values.
     empty_rows:bool=True,
@@ -68,6 +75,9 @@ def uglify(
 
     if empty_padding:
         csv = add_empty_padding(csv, state)
+
+    if satellite_artefacts:
+        csv = add_satellites(csv, state)
 
     if nan_like_artefacts:
         csv = add_nan_like_artefacts(csv, state)
