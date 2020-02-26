@@ -10,8 +10,15 @@ ugly_csv_generator.egg-info/dependency_links.txt
 ugly_csv_generator.egg-info/requires.txt
 ugly_csv_generator.egg-info/top_level.txt
 ugly_csv_generator/utils/__init__.py
+ugly_csv_generator/utils/add_chunk.py
 ugly_csv_generator/utils/add_duplicate_schema.py
 ugly_csv_generator/utils/add_empty_columns.py
 ugly_csv_generator/utils/add_empty_padding.py
 ugly_csv_generator/utils/add_empty_rows.py
+ugly_csv_generator/utils/add_nan_like_artefacts.py
+ugly_csv_generator/utils/add_random_spaces.py
 ugly_csv_generator/utils/add_row.py
+ugly_csv_generator/utils/add_satellites.py
+ugly_csv_generator/utils/satellites/random.csv
+ugly_csv_generator/utils/satellites/restaurant.csv
+ugly_csv_generator/utils/satellites/weird.csv

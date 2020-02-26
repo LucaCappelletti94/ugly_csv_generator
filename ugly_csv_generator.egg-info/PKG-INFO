@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: ugly-csv-generator
-Version: 1.0.0
+Version: 1.0.1
 Summary: Python package to generate ugly real-looking csvs.
 Home-page: https://github.com/LucaCappelletti94/ugly_csv_generator
 Author: LucaCappelletti94
