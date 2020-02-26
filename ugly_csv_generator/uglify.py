@@ -1,6 +1,9 @@
 import pandas as pd
 from random import Random
-from .utils import add_empty_columns, add_empty_rows, add_duplicate_schema, add_empty_padding
+from .utils import (
+    add_empty_columns, add_empty_rows, add_duplicate_schema,
+    add_empty_padding, add_nan_like_artefacts, add_random_spaces
+)
 
 
 def uglify(
@@ -10,10 +13,9 @@ def uglify(
     empty_rows: bool = True,
     duplicate_schema: bool = True,
     empty_padding: bool = True,
-    # excel_like_artefacts: bool = True,
-    # nan_like_artefacts: bool = True,
+    nan_like_artefacts: bool = True,
     # random_separator: bool = True,
-    # random_spaces: bool = True,
+    random_spaces: bool = True,
     verbose: bool = True,
     seed: int = 42
 ):
@@ -41,10 +43,6 @@ def uglify(
         Whetever to introduce random blank rows.
     duplicate_schema:bool=True,
         Whetever to duplicate the schema rows within the data.
-    excel_like_artefacts:bool=True,
-        Whetever to add excel-like artefacts.
-    nan_like_artefacts:bool=True,
-        Whetever to add nan-like artefacts.
     verbose: bool = True,
         Whetever to show the loading bars.
     seed:int=42
@@ -59,6 +57,9 @@ def uglify(
     if duplicate_schema:
         csv = add_duplicate_schema(csv, state, verbose=verbose)
 
+    if random_spaces:
+        csv = add_random_spaces(csv, state)
+
     if empty_columns:
         csv = add_empty_columns(csv.copy(), state, verbose=verbose)
 
@@ -67,5 +68,8 @@ def uglify(
 
     if empty_padding:
         csv = add_empty_padding(csv, state)
+
+    if nan_like_artefacts:
+        csv = add_nan_like_artefacts(csv, state)
 
     return csv
