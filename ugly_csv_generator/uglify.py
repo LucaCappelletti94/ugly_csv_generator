@@ -6,13 +6,13 @@ from .utils import add_empty_columns, add_empty_rows, add_duplicate_schema, add_
 
 def uglify(
     csv: pd.DataFrame,
-    path: str = None,
+    # path: str = None,
     empty_columns: bool = True,
     empty_rows: bool = True,
     duplicate_schema: bool = True,
     empty_padding: bool = True,
-    excel_like_artefacts: bool = True,
-    nan_like_artefacts: bool = True,
+    # excel_like_artefacts: bool = True,
+    # nan_like_artefacts: bool = True,
     # random_separator: bool = True,
     # random_spaces: bool = True,
     seed: int = 42
