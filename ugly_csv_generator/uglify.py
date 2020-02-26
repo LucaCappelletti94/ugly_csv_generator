@@ -53,12 +53,16 @@ def uglify(
     The uglified dataframe.
     """
     state = Random(seed)
+
+    if duplicate_schema:
+        csv = add_duplicate_schema(csv, state)
+
     if empty_columns:
         csv = add_empty_columns(csv.copy(), state)
 
     if empty_rows:
         csv = add_empty_rows(csv, state)
-
+    
     if duplicate_schema:
         csv = add_duplicate_schema(csv, state)
 
