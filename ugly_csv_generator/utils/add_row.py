@@ -7,7 +7,7 @@ def add_row(csv: pd.DataFrame, values: List, iloc: int = None, state: Random = N
     if iloc is None:
         iloc = state.randint(0, len(csv))
     return pd.concat([
-        csv.iloc[:iloc], 
+        csv.iloc[:iloc],
         pd.DataFrame(dict(zip(csv.columns, values)), index=[iloc]),
         csv.iloc[iloc:]
     ]).reset_index(drop=True)

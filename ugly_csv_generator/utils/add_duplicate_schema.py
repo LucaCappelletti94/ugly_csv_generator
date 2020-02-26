@@ -1,6 +1,5 @@
 from .add_row import add_row
 import pandas as pd
-import numpy as np
 from random import Random
 from tqdm.auto import tqdm
 

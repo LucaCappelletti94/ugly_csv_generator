@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from random import Random
 from .utils import add_empty_columns, add_empty_rows, add_duplicate_schema, add_empty_padding
 
@@ -56,7 +55,7 @@ def uglify(
     The uglified dataframe.
     """
     state = Random(seed)
-    
+
     if duplicate_schema:
         csv = add_duplicate_schema(csv, state, verbose=verbose)
 
