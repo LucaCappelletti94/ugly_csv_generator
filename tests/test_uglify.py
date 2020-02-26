@@ -4,8 +4,9 @@ import pandas as pd
 
 
 def test_uglify():
-    csv = random_csv()
-    ugly1 = uglify(csv)
-    ugly2 = uglify(csv)
+    for _ in range(3):
+        csv = random_csv()
+        ugly1 = uglify(csv)
+        ugly2 = uglify(csv)
 
-    pd.testing.assert_frame_equal(ugly1, ugly2)
+        pd.testing.assert_frame_equal(ugly1, ugly2)
