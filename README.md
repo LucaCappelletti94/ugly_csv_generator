@@ -1,6 +1,6 @@
 # Ugly CSV generator
 [![Pypi project](https://badge.fury.io/py/ugly-csv-generator.svg)](https://badge.fury.io/py/ugly-csv-generator)
-[![Pypi total project downloads](https://pepy.tech/badge/ugly-csv-generator)](https://pepy.tech/badge/ugly-csv-generator)
+[![Pypi total project downloads](https://pepy.tech/badge/ugly-csv-generator)](https://pepy.tech/projects/ugly-csv-generator)
 [![LICENSE](https://img.shields.io/pypi/l/ugly-csv-generator)](https://github.com/LucaCappelletti94/ugly-csv-generator/blob/main/LICENSE)
 [![Python version](https://img.shields.io/pypi/pyversions/ugly-csv-generator)](https://img.shields.io/pypi/pyversions/ugly-csv-generator)
 [![Github Actions](https://github.com/LucaCappelletti94/ugly_csv_generator/actions/workflows/python.yml/badge.svg)](https://github.com/LucaCappelletti94/ugly_csv_generator/actions/)
