@@ -20,3 +20,4 @@ coverage.xml
 *.ipynb
 *.egg-info
 test.csv
+build

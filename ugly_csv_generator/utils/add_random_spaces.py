@@ -1,6 +1,7 @@
 """Randomly add spaces, newlines, and carriage returns to a CSV file.
 
-This submodule provides a function to add random spaces, newlines, and carriage returns to a CSV file.
+This submodule provides a function to add random spaces,
+newlines, and carriage returns to a CSV file.
 """
 
 from random import Random
@@ -29,7 +30,7 @@ def add_random_spaces(csv: pd.DataFrame, state: Random) -> pd.DataFrame:
     state: Random,
         The random state to use for the generation.
     """
-    return csv.applymap(
+    return csv.map(
         lambda x: (
             f"{random_space(state)}{str(x).replace(' ', random_space(state))}{random_space(state)}"
             if not pd.isna(x)

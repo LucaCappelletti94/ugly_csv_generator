@@ -29,4 +29,4 @@ def add_nan_like_artefacts(csv: pd.DataFrame, state: Random) -> pd.DataFrame:
     state: Random,
         The random state to use for the generation.
     """
-    return csv.applymap(lambda x: random_nan(state) if pd.isna(x) else x)
+    return csv.map(lambda x: random_nan(state) if pd.isna(x) else x)

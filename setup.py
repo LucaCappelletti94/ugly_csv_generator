@@ -57,6 +57,7 @@ setup(
     packages=find_packages(exclude=["contrib", "docs", "tests*"]),
     tests_require=test_deps,
     # Add here the package dependencies
-    install_requires=["pandas", "numpy", "tqdm"],
+    install_requires=["pandas>=2.1.0", "numpy", "tqdm"],
+    python_requires=">=3.9",
     extras_require=extras,
 )
