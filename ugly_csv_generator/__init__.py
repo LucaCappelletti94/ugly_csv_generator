@@ -1,5 +1,5 @@
-from .uglify import uglify
+"""Python package to generate ugly real-looking csvs."""
 
-__all__ = [
-    "uglify"
-]
+from ugly_csv_generator.uglify import uglify
+
+__all__ = ["uglify"]

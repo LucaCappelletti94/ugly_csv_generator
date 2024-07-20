@@ -1,25 +1,30 @@
-import pandas as pd
+"""Module providing the uglify function to uglify a CSV."""
+
+from typing import Union
 from random import Random
-from .utils import (
-    add_empty_columns, add_empty_rows, add_duplicate_schema,
-    add_empty_padding, add_nan_like_artefacts, add_random_spaces,
-    add_satellites
+import pandas as pd
+from ugly_csv_generator.utils import (
+    add_empty_columns,
+    add_empty_rows,
+    add_duplicate_schema,
+    add_empty_padding,
+    add_nan_like_artefacts,
+    add_random_spaces,
+    add_satellites,
 )
 
 
 def uglify(
-    csv: pd.DataFrame,
-    # path: str = None,
+    csv: Union[pd.DataFrame, str],
     empty_columns: bool = True,
     empty_rows: bool = True,
     duplicate_schema: bool = True,
     empty_padding: bool = True,
     nan_like_artefacts: bool = True,
-    # random_separator: bool = True,
-    satellite_artefacts: bool = True,
+    satellite_artefacts: bool = False,
     random_spaces: bool = True,
     verbose: bool = True,
-    seed: int = 42
+    seed: int = 42,
 ):
     """Return or saves to given path an uglified version of the given DataFrame.
 
@@ -29,30 +34,32 @@ def uglify(
 
     Parameters
     ---------------------------------
-    csv:pd.DataFrame,
-        The dataframe containing the CSV to uglify.
-    path:str=None,
-        Path where to save the CSV.
-    empty_columns:bool=True,
-        Whetever to introduce empty columns (with header).
-    empty_padding:bool=True,
-        Whetever to introduce padding around the data.
-    random_separator:bool=True,
-        Whetever to use a random separator when saving the file.
-    satellite_artefacts:bool=True,
-        Whetever to add satellite text around the central table.
+    csv: pd.DataFrame,
+        The dataframe containing or path to the CSV to uglify.
+    empty_columns: bool = True,
+        Whether to introduce empty columns (with header).
+    empty_rows: bool = True,
+        Whether to introduce random blank rows.
+    duplicate_schema: bool = True,
+        Whether to duplicate the schema rows within the data.
+    empty_padding: bool = True,
+        Whether to introduce padding around the data.
+    nan_like_artefacts: bool = True,
+        Whether to introduce NaN-like artefacts.
+        A NaN-like artefact is a value that looks like NaN
+        but is not actually NaN, like "N/A" or "-".
+    satellite_artefacts: bool = True,
+        Whether to add satellite text around the central table.
         This is useful to simulate when you can expect for
         random scribbling around your CSV data.
         The satellites may be added on the top or bottom.
-    random_spaces:bool=True,
-        Whetever to add random spaces to the file values.
-    empty_rows:bool=True,
-        Whetever to introduce random blank rows.
-    duplicate_schema:bool=True,
-        Whetever to duplicate the schema rows within the data.
+        It selects a random satellite from the available satellites
+        collection in the package, encountered in the real world.
+    random_spaces: bool = True,
+        Whether to add random spaces to the file values.
     verbose: bool = True,
-        Whetever to show the loading bars.
-    seed:int=42
+        Whether to show the loading bars.
+    seed: int = 42
         The random seed to use to make reproducible the random aspects.
 
     Returns
@@ -60,6 +67,10 @@ def uglify(
     The uglified dataframe.
     """
     state = Random(seed)
+
+    # If the CSV is a path, load it
+    if isinstance(csv, str):
+        csv = pd.read_csv(csv)
 
     if duplicate_schema:
         csv = add_duplicate_schema(csv, state, verbose=verbose)

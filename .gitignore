@@ -18,3 +18,4 @@ coverage.xml
 .ipytest_cache
 .ipynb_checkpoints
 *.ipynb
+*.egg-info

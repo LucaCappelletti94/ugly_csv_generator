@@ -1,1 +1,2 @@
 include ugly_csv_generator/utils/satellites/*.csv
+include LICENSE

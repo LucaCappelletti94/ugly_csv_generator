@@ -1,19 +1,17 @@
+"""Setup for the ugly-csv-generator python package."""
 import os
 import re
-# To use a consistent encoding
-from codecs import open as copen
-
 from setuptools import find_packages, setup
 
 here = os.path.abspath(os.path.dirname(__file__))
 
 # Get the long description from the relevant file
-with copen(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
+with open(os.path.join(here, 'README.md'), encoding='utf8') as f:
     long_description = f.read()
 
 
 def read(*parts):
-    with copen(os.path.join(here, *parts), 'r') as fp:
+    with open(os.path.join(here, *parts), 'r', encoding='utf8') as fp:
         return fp.read()
 
 
@@ -31,9 +29,7 @@ __version__ = find_version("ugly_csv_generator", "__version__.py")
 test_deps =[
     "pytest",
     "pytest-cov",
-    "coveralls",
     "validate_version_code",
-    "codacy-coverage",
     "random_csv_generator"
 ]
 
@@ -53,7 +49,7 @@ setup(
     license='MIT',
     include_package_data=True,
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 5 - Production/Stable',
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3'
     ],
