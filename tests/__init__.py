@@ -1,0 +1,1 @@
+"""Test suite for the ugly_csv_generator package."""

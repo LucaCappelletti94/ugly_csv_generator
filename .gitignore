@@ -19,3 +19,4 @@ coverage.xml
 .ipynb_checkpoints
 *.ipynb
 *.egg-info
+test.csv
