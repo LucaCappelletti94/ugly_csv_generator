@@ -46,20 +46,20 @@ The initial CSV will look something like:
 
 The result uglified CSV will look something like this:
 
-|     | 0                | 1                                      | 2                   | 3        | 4        | 5          | 6                                      | 7    | 8         |
-|-----|------------------|----------------------------------------|---------------------|----------|----------|------------|----------------------------------------|------|-----------|
-| 0   | #RIF!            | ////                                   | #RIF!               | #RIF!    | 0        | ....       | 0                                      | 0    |           |
-| 1   |                  | "('surname',)('.',)(0,)"               | region              | province | surname  | "('province',)('_',)(1,)"               |      | 0         | ___       |
-| 2   | 0                | ////////                               | region              | "province                                      " | "surname                                      " | 0          | 0                                      |      | .......... |
-| 3   | _____            | ///////                                | "region                                         " | "province                                   " | "surname                                     " | #RIF!     | #RIF!     |      | #RIF!     |
-| 4   | "                                             " |                           | Calabria | "Catanzaro                                   " | "Rossi                                     " | 0          | -------- | ------ | 0         |
-| 5   | 0                | "                                       " | Sicilia  | Ragusa  | "Pinna                                       " | "                                            " |            | "        " |           |
-| 6   | 0                | -------                                 |                     | #RIF!    | #RIF!    | 0          | "                                        " | ---- | "         " |
-| 7   | /////////        | /////////                               | "Lombardia                                      " | "Varese                                     " | Sbrana      | ///////////                             | ---- | #RIF!     |
-| 8   | __               | ---------                               | "Lazio                                         " | "Roma                                       " | "Mair                                       " |           | ///       | "                                             " |
-| 9   |                  | --------                                 | 0                   | /////    | ---      | 0          | /////                                    | ---- |           |
-| 10  | -----            | #RIF!                                   | "Sicilia                                     " | Messina | "Ferrari                                     " | 0          |           | #RIF!     | #RIF!     |
-| 11  | ...              | 0                                      |                    | -----    | "                                             " | --------  | 0                                      | 0    |
+|     | 1                                     | 2                   | 3        | 4        | 5                                      | 6    |
+|-----|---------------------------------------|---------------------|----------|----------|----------------------------------------|------|
+| 0   | ////                                  | #RIF!               | #RIF!    | 0        | ....                                   | 0    |
+| 1   | "('surname',)('.',)(0,)"              | region              | province | surname  | "('province',)('_',)(1,)"              |      |
+| 2   | ////////                              | region              | "province                                   " | "surname                                   " | 0                                      | 0    |
+| 3   | ///////                               | "region                                         " | "province                                   " | "surname                                     " | #RIF!                                   | #RIF!     |
+| 4   |                                       | Calabria            | "Catanzaro                                   " | "Rossi                                     " | 0                                      | -------- |
+| 5   | "                                     " | Sicilia            | Ragusa   | "Pinna                                     " | "                                            " |          |
+| 6   | -------                               |                     | #RIF!    | #RIF!    | 0                                      | "                                        " |
+| 7   | /////////                             | "Lombardia                                      " | "Varese                                     " | Sbrana                                  | ///////////                             |          |
+| 8   | ---------                             | "Lazio                                         " | "Roma                                       " | "Mair                                       " |                                        |          |
+| 9   | --------                              | 0                   | /////    | ---      | 0                                      | ///// |
+| 10  | #RIF!                                 | "Sicilia                                     " | Messina  | "Ferrari                                     " | 0                                      |          |
+| 11  | 0                                     |                     | -----    | "                                             " | --------                                | 0    |
 
 ## Available uglifications
 Let's take a look at the available uglifications! All of these options are available as keyword arguments in the `uglify` function.
