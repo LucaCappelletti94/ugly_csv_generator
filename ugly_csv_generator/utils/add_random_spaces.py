@@ -7,7 +7,7 @@ newlines, and carriage returns to a CSV file.
 from random import Random
 import pandas as pd
 
-SPACES = [" ", "\t", "\r", "\n", "\n\r"]
+SPACES = [" ", "\t", "\n", "\n\r"]
 
 UNICODE_SPACES = [
     "\u0020",  # ASCII space, should be the same as ' '
@@ -39,7 +39,6 @@ UNICODE_SPACES = [
     "\u001D",  # Group separator
     "\u001E",  # Record separator
     "\u001F",  # Unit separator
-    '\u1368', # Ethiopic paragraph separator
 ] + SPACES
 
 

@@ -80,8 +80,11 @@ ugly = uglify(
     duplicate_schema = True,
     empty_padding = True,
     nan_like_artefacts = True,
+    replace_zeros = True,
+    replace_ones = True,
     satellite_artefacts = False,
     random_spaces = True,
+    include_unicode = True,
     verbose = True,
     seed = 42,
 )
@@ -111,6 +114,11 @@ The initial CSV will look something like:
 In the following example we will solely add empty columns to the CSV. This phenomenon is common when the data-entry person leaves empty columns in the middle of the table.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = True,
@@ -138,6 +146,11 @@ The result will look something like:
 In the following example we will solely add empty rows to the CSV. This phenomenon is common when the data-entry person leaves empty rows in the middle of the table.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = False,
@@ -167,6 +180,11 @@ The result will look something like:
 In the following example we will solely duplicate the schema of the CSV. This phenomenon is common when the data-entry person copies the header of the table multiple times, or several CSVs are concatenated together without removing the header.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = False,
@@ -196,6 +214,11 @@ The result will look something like:
 In the following example we will solely add empty padding to the CSV. Padding in this context means adding empty cells around the CSV, represing when the data-entry person started the table somewhere in the middle of a sheet document.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = False,
@@ -232,6 +255,11 @@ In the following example we will solely add NaN-like artefacts to the CSV. This 
 In the example we considered earlier, we do not have any NaN values, so we will add some to the CSV by also enabling the `empty_rows` option.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = False,
@@ -264,6 +292,11 @@ In the following example we will solely add satellite artefacts to the CSV. A sa
 The package offers a few satellite artefacts encountered in the wild.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = False,
@@ -305,6 +338,11 @@ The result will look something like:
 In the following example we will solely add random spaces around the values in the CSV. This phenomenon is common when the data-entry person is not careful with the spaces around the values in the table and adds some random spaces, for instance to visually align the values.
 
 ```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
 ugly = uglify(
     csv,
     empty_columns = False,
@@ -327,6 +365,43 @@ The result will look something like:
 | 2 | " Sicilia            " | " Messina       " | " Sanna        " |
 | 3 | " Marche             " | " Ancona        " | " Gallo        " |
 | 4 | " Lazio              " | " Frosinone     " | " Gallo        " |
+
+
+#### Unicode variant
+The random spaces uglification can also be applied with unicode characters. This is useful to test the robustness of the CSV reader to unicode characters.
+
+```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
+ugly = uglify(
+    csv,
+    empty_columns = False,
+    empty_rows = False,
+    duplicate_schema = False,
+    empty_padding = False,
+    nan_like_artefacts = False,
+    satellite_artefacts = False,
+    random_spaces = True,
+    include_unicode = True,
+    seed = 424,
+)
+```
+
+|    | region                   | province                      | surname                |
+|---:|:-------------------------|:------------------------------|:-----------------------|
+|  0 | ‌⁠ 	᠎    Calabria               | Catanzaro  ⁣ | Rossi                  |
+|  1 | ⁠                         | 󠀠　‌ Ragusa​                  | ⁠Pinna               |
+|  2 | 󠀠	‍  ⁣          | Varese⁣   ﻿  | ​᠎  Sbrana 󠀠‌   |
+|    | ​Lombardia               |                               |                        |
+|    |            |                               |                        |
+|  3 | ​  ﻿‌ 	Lazio                | ᠎                             | Mair 󠀠﻿    ⁣               |
+|  4 | Sicilia  | ﻿Messina    | Ferrari 　 ⁠   |
+|    |                          |                               |               |
+|    |                          |                               |               |
+|    |                          |                               | ᠎             |
 
 ## Contributing
 You have encountered a new type of uglification that you would like to add to the package? You have a suggestion for a new feature or improvement? You have found a bug? Open an issue or a pull request, I will be happy to help you!
