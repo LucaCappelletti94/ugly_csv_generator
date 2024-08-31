@@ -11,6 +11,8 @@ from ugly_csv_generator.utils import (
     add_nan_like_artefacts,
     add_random_spaces,
     add_satellites,
+    replace_zeros as _replace_zeros,
+    replace_ones as _replace_ones,
 )
 
 
@@ -21,8 +23,11 @@ def uglify(
     duplicate_schema: bool = True,
     empty_padding: bool = True,
     nan_like_artefacts: bool = True,
+    replace_zeros: bool = False,
+    replace_ones: bool = False,
     satellite_artefacts: bool = False,
     random_spaces: bool = True,
+    include_unicode: bool = True,
     verbose: bool = True,
     seed: int = 42,
 ):
@@ -48,6 +53,12 @@ def uglify(
         Whether to introduce NaN-like artefacts.
         A NaN-like artefact is a value that looks like NaN
         but is not actually NaN, like "N/A" or "-".
+    replace_zeros: bool = False,
+        Whether to replace zeros with zero-looking characters,
+        such as 'O' or 'o'.
+    replace_ones: bool = False,
+        Whether to replace ones with one-looking characters,
+        such as 'I', 'i', or '|'.
     satellite_artefacts: bool = True,
         Whether to add satellite text around the central table.
         This is useful to simulate when you can expect for
@@ -57,6 +68,10 @@ def uglify(
         collection in the package, encountered in the real world.
     random_spaces: bool = True,
         Whether to add random spaces to the file values.
+    include_unicode: bool = True,
+        Whether to include Unicode artefacts.
+        This includes adding Unicode space-like artefacts or
+        Unicode NaN-like artefacts.
     verbose: bool = True,
         Whether to show the loading bars.
     seed: int = 42
@@ -75,8 +90,14 @@ def uglify(
     if duplicate_schema:
         csv = add_duplicate_schema(csv, state, verbose=verbose)
 
+    if replace_zeros:
+        csv = _replace_zeros(csv, state, include_unicode=include_unicode)
+
+    if replace_ones:
+        csv = _replace_ones(csv, state, include_unicode=include_unicode)
+
     if random_spaces:
-        csv = add_random_spaces(csv, state)
+        csv = add_random_spaces(csv, state, include_unicode=include_unicode)
 
     if empty_columns:
         csv = add_empty_columns(csv.copy(), state, verbose=verbose)
@@ -91,6 +112,6 @@ def uglify(
         csv = add_satellites(csv, state)
 
     if nan_like_artefacts:
-        csv = add_nan_like_artefacts(csv, state)
+        csv = add_nan_like_artefacts(csv, state, include_unicode=include_unicode)
 
     return csv

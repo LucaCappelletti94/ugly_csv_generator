@@ -7,6 +7,8 @@ from ugly_csv_generator.utils.add_empty_padding import add_empty_padding
 from ugly_csv_generator.utils.add_nan_like_artefacts import add_nan_like_artefacts
 from ugly_csv_generator.utils.add_random_spaces import add_random_spaces
 from ugly_csv_generator.utils.add_satellites import add_satellites
+from ugly_csv_generator.utils.replace_zeros import replace_zeros
+from ugly_csv_generator.utils.replace_ones import replace_ones
 
 __all__ = [
     "add_empty_columns",
@@ -16,4 +18,6 @@ __all__ = [
     "add_nan_like_artefacts",
     "add_random_spaces",
     "add_satellites",
+    "replace_zeros",
+    "replace_ones",
 ]
