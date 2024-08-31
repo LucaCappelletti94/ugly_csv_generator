@@ -6,7 +6,7 @@ import pandas as pd
 
 
 def replace_character(
-    csv: pd.DataFrame, state: Random, character: str, characters_to_replace: List[str]
+    csv: pd.DataFrame, state: Random, character: List[str], characters_to_replace: List[str]
 ) -> pd.DataFrame:
     """Replace randomly in a dataframe given a random state a character with ones from a provided list.
 
@@ -16,8 +16,9 @@ def replace_character(
         The DataFrame to add the NaN-like artefacts to.
     state: Random,
         The random state to use for the generation.
-    character: str,
+    character: List[str],
         The character to replace.
+        E.g. in the case of zero it will be ['0', 0, 0.0].
     characters_to_replace: List[str],
         The list of characters to replace the character with.
     """
@@ -25,5 +26,5 @@ def replace_character(
         characters_to_replace
     ), "The list of characters to replace the character with cannot be empty."
     return csv.map(
-        lambda x: (state.choice(characters_to_replace) if x == character else x)
+        lambda x: (state.choice(characters_to_replace) if x in character else x)
     )

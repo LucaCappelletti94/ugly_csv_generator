@@ -10,7 +10,6 @@ import pandas as pd
 SPACES = [" ", "\t", "\n", "\n\r"]
 
 UNICODE_SPACES = [
-    "\u0020",  # ASCII space, should be the same as ' '
     "\u00A0",  # Non-breaking space
     "\u1680",  # Ogham space mark
     "\u2000",  # En quad
@@ -39,7 +38,7 @@ UNICODE_SPACES = [
     "\u001D",  # Group separator
     "\u001E",  # Record separator
     "\u001F",  # Unit separator
-] + SPACES
+]
 
 
 def random_space(state: Random, include_unicode: bool):
@@ -57,7 +56,7 @@ def random_space(state: Random, include_unicode: bool):
     A random space-like artefact.
     """
     k = state.randint(1, 10)
-    return "".join(state.choices(UNICODE_SPACES if include_unicode else SPACES, k=k))
+    return "".join(state.choices((UNICODE_SPACES + SPACES)  if include_unicode else SPACES, k=k))
 
 
 def add_random_spaces(

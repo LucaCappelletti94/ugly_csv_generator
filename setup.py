@@ -31,6 +31,7 @@ test_deps = [
     "pytest-cov",
     "validate_version_code",
     "random_csv_generator>=1.0.2",
+    "pytest-readme",
 ]
 
 extras = {

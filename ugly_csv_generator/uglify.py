@@ -27,7 +27,7 @@ def uglify(
     replace_ones: bool = False,
     satellite_artefacts: bool = False,
     random_spaces: bool = True,
-    include_unicode: bool = True,
+    include_unicode: bool = False,
     verbose: bool = True,
     seed: int = 42,
 ):
@@ -68,7 +68,7 @@ def uglify(
         collection in the package, encountered in the real world.
     random_spaces: bool = True,
         Whether to add random spaces to the file values.
-    include_unicode: bool = True,
+    include_unicode: bool = False,
         Whether to include Unicode artefacts.
         This includes adding Unicode space-like artefacts or
         Unicode NaN-like artefacts.

@@ -286,6 +286,195 @@ The result will look something like:
 | 6 |         | "          | ------- |
 
 
+#### Unicode variant
+The NaN-like artefacts can also be applied with unicode characters. This is useful to test the robustness of the CSV reader to unicode characters.
+
+```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
+
+ugly = uglify(
+    csv,
+    empty_columns = False,
+    empty_rows = True,
+    duplicate_schema = False,
+    empty_padding = False,
+    nan_like_artefacts = True,
+    satellite_artefacts = False,
+    random_spaces = False,
+    include_unicode = True,
+    seed = 424,
+)
+```
+
+The result will look something like:
+
+|    | region    | province   | surname   |
+|---:|:----------|:-----------|:----------|
+|  0 | Calabria  | Catanzaro  | Rossi     |
+|  1 | Sicilia   | Ragusa     | Pinna     |
+|  2 | Lombardia | Varese     | Sbrana    |
+|  3 | .         | ᴑ          | 0         |
+|  4 | Lazio     | Roma       | Mair      |
+|  5 | Sicilia   | Messina    | Ferrari   |
+|  6 | ₀         | ________   | ᪐         |
+
+### Replace zeros
+In the following example we will solely replace zeros with a custom value. In different places in the word and different offices, zeros may be represented in different ways. Characters for zero from different alphabets, or even different symbols, may be used to represent zero. Note that this latter functionality is only enabled if the `include_unicode` option is set to `True`.
+
+```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
+
+# We add a column with zeros
+csv["zero"] = 0
+
+ugly = uglify(
+    csv,
+    empty_columns = False,
+    empty_rows = False,
+    duplicate_schema = False,
+    empty_padding = False,
+    nan_like_artefacts = False,
+    satellite_artefacts = False,
+    random_spaces = False,
+    replace_zeros = True,
+    include_unicode = False,
+    seed = 424,
+)
+```
+
+The result will look something like:
+
+|    | region    | province   | surname   | zero   |
+|---:|:----------|:-----------|:----------|:-------|
+|  0 | Calabria  | Catanzaro  | Rossi     | 0      |
+|  1 | Sicilia   | Ragusa     | Pinna     | o      |
+|  2 | Lombardia | Varese     | Sbrana    | 0      |
+|  3 | Lazio     | Roma       | Mair      | 0      |
+|  4 | Sicilia   | Messina    | Ferrari   | O      |
+
+#### Unicode variant
+The replace zeros can also be applied with unicode characters. This is useful to test the robustness of the CSV reader to unicode characters.
+
+```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
+
+# We add a column with zeros
+csv["zero"] = 0
+
+ugly = uglify(
+    csv,
+    empty_columns = False,
+    empty_rows = False,
+    duplicate_schema = False,
+    empty_padding = False,
+    nan_like_artefacts = False,
+    satellite_artefacts = False,
+    random_spaces = False,
+    replace_zeros = True,
+    include_unicode = True,
+    seed = 424,
+)
+```
+
+The result will look something like:
+
+|    | region    | province   | surname   | zero   |
+|---:|:----------|:-----------|:----------|:-------|
+|  0 | Calabria  | Catanzaro  | Rossi     | o      |
+|  1 | Sicilia   | Ragusa     | Pinna     | ᪐      |
+|  2 | Lombardia | Varese     | Sbrana    | ο      |
+|  3 | Lazio     | Roma       | Mair      | 𝟘      |
+|  4 | Sicilia   | Messina    | Ferrari   | ᥆      |
+
+### Replace ones
+In the following example we will solely replace ones with a custom value. In different places in the word and different offices, ones may be represented in different ways. Characters for one from different alphabets, or even different symbols, may be used to represent one. Note that this latter functionality is only enabled if the `include_unicode` option is set to `True`.
+
+```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
+
+# We add a column with ones
+csv["one"] = 1
+
+ugly = uglify(
+    csv,
+    empty_columns = False,
+    empty_rows = False,
+    duplicate_schema = False,
+    empty_padding = False,
+    nan_like_artefacts = False,
+    satellite_artefacts = False,
+    random_spaces = False,
+    replace_ones = True,
+    include_unicode = False,
+    seed = 424,
+)
+```
+
+The result will look something like:
+
+|    | region    | province   | surname   | one   |
+|---:|:----------|:-----------|:----------|:------|
+|  0 | Calabria  | Catanzaro  | Rossi     | 1     |
+|  1 | Sicilia   | Ragusa     | Pinna     | l     |
+|  2 | Lombardia | Varese     | Sbrana    | 1     |
+|  3 | Lazio     | Roma       | Mair      | 1     |
+|  4 | Sicilia   | Messina    | Ferrari   | I     |
+
+#### Unicode variant
+The replace ones can also be applied with unicode characters. This is useful to test the robustness of the CSV reader to unicode characters.
+
+```python
+from random_csv_generator import random_csv
+from ugly_csv_generator import uglify
+
+csv = random_csv(5) # CSV with 5 lines
+csv = csv[csv.columns[:3]] # We will use only the first 3 columns for this example
+
+# We add a column with ones
+csv["one"] = 1
+
+ugly = uglify(
+    csv,
+    empty_columns = False,
+    empty_rows = False,
+    duplicate_schema = False,
+    empty_padding = False,
+    nan_like_artefacts = False,
+    satellite_artefacts = False,
+    random_spaces = False,
+    replace_ones = True,
+    include_unicode = True,
+    seed = 424,
+)
+```
+
+The result will look something like:
+
+|    | region    | province   | surname   | one   |
+|---:|:----------|:-----------|:----------|:------|
+|  0 | Calabria  | Catanzaro  | Rossi     | ¹     |
+|  1 | Sicilia   | Ragusa     | Pinna     | ₁     |
+|  2 | Lombardia | Varese     | Sbrana    | l     |
+|  3 | Lazio     | Roma       | Mair      | 1     |
+|  4 | Sicilia   | Messina    | Ferrari   | ⓵     |
+
+
 ### Satellite artefacts
 In the following example we will solely add satellite artefacts to the CSV. A satellite artefact is likely the quirkiest and most annoying artefact to deal with. It represents the situation where the data-entry person adds some notes on the side of the table. A real-world example of this which I have encountered is when the data-entry person adds the office lunch order on the side of the table and forgets to remove it.
 
@@ -390,18 +579,7 @@ ugly = uglify(
 )
 ```
 
-|    | region                   | province                      | surname                |
-|---:|:-------------------------|:------------------------------|:-----------------------|
-|  0 | ‌⁠ 	᠎    Calabria               | Catanzaro  ⁣ | Rossi                  |
-|  1 | ⁠                         | 󠀠　‌ Ragusa​                  | ⁠Pinna               |
-|  2 | 󠀠	‍  ⁣          | Varese⁣   ﻿  | ​᠎  Sbrana 󠀠‌   |
-|    | ​Lombardia               |                               |                        |
-|    |            |                               |                        |
-|  3 | ​  ﻿‌ 	Lazio                | ᠎                             | Mair 󠀠﻿    ⁣               |
-|  4 | Sicilia  | ﻿Messina    | Ferrari 　 ⁠   |
-|    |                          |                               |               |
-|    |                          |                               |               |
-|    |                          |                               | ᠎             |
+Due to limitations of the markdown rendering, we cannot show the result here. You can run the code snippet to see the result. It's just that damn cursed!
 
 ## Contributing
 You have encountered a new type of uglification that you would like to add to the package? You have a suggestion for a new feature or improvement? You have found a bug? Open an issue or a pull request, I will be happy to help you!

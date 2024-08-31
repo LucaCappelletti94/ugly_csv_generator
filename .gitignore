@@ -22,3 +22,4 @@ coverage.xml
 test.csv
 build
 dist
+test_readme.py

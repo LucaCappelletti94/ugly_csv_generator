@@ -15,10 +15,6 @@ UNICODE_ZERO_LOOKING_CHARACTERS: List[str] = [
     '\U0001D7CE',  # MATHEMATICAL BOLD DIGIT ZERO
     '\u2070',  # SUPERSCRIPT ZERO
     '\u2080',  # SUBSCRIPT ZERO
-    '\u215F',  # FRACTION NUMERATOR ZERO
-    '\u2189',  # VULGAR FRACTION ZERO SEVENTHS
-    '\u2460',  # CIRCLED DIGIT ONE
-    '\u2080',  # SUBSCRIPT ZERO
     '\u03BF',  # GREEK SMALL LETTER OMICRON
     '\u1D0F',  # LATIN LETTER SMALL CAPITAL O
     '\u1D11',  # LATIN SMALL LETTER SIDEWAYS O
@@ -65,6 +61,6 @@ def replace_zeros(
     return replace_character(
         csv,
         state,
-        '0',
+        [0, 0.0, '0'],
         (UNICODE_ZERO_LOOKING_CHARACTERS + ZERO_LOOKING_CHARACTERS) if include_unicode else ZERO_LOOKING_CHARACTERS,
     )
