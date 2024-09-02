@@ -9,7 +9,7 @@ from ugly_csv_generator.utils.replace_zeros import (
     UNICODE_ZERO_LOOKING_CHARACTERS,
 )
 
-NAN_LIKE_ARTIFACTS = [np.nan, "#RIF!", "N/A"] + ZERO_LOOKING_CHARACTERS
+NAN_LIKE_ARTIFACTS = [np.nan, None, "null", "#RIF!", "N/A"] + ZERO_LOOKING_CHARACTERS
 
 UNICODE_NAN_LIKE_ARTIFACTS = [
     "\uFFFD",  # REPLACEMENT CHARACTER
