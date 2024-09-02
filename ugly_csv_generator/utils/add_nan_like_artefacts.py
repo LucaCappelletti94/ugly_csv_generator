@@ -9,7 +9,27 @@ from ugly_csv_generator.utils.replace_zeros import (
     UNICODE_ZERO_LOOKING_CHARACTERS,
 )
 
-NAN_LIKE_ARTIFACTS = [np.nan, None, "null", "#RIF!", "N/A"] + ZERO_LOOKING_CHARACTERS
+NAN_LIKE_ARTIFACTS = [
+    "",
+    "\n",
+    "\r",
+    "\n\r",
+    "?",
+    "NaN",
+    "Nan",
+    "_",
+    "/",
+    " ",
+    "-",
+    "NA",
+    ".",
+    np.nan,
+    None,
+    "null",
+    "#RIF!",
+    "#N/D",
+    "N/A",
+] + ZERO_LOOKING_CHARACTERS
 
 UNICODE_NAN_LIKE_ARTIFACTS = [
     "\uFFFD",  # REPLACEMENT CHARACTER
@@ -31,7 +51,11 @@ def random_nan(state: Random, include_unicode: bool) -> str:
         The random state to use for the generation.
     """
     if state.randint(0, 1) == 1:
-        return state.choice((UNICODE_NAN_LIKE_ARTIFACTS + NAN_LIKE_ARTIFACTS) if include_unicode else NAN_LIKE_ARTIFACTS)
+        return state.choice(
+            (UNICODE_NAN_LIKE_ARTIFACTS + NAN_LIKE_ARTIFACTS)
+            if include_unicode
+            else NAN_LIKE_ARTIFACTS
+        )
     n = state.randint(1, 10)
     return (
         state.choice([".", "-", "_", "/", random_space(state, include_unicode=False)])
